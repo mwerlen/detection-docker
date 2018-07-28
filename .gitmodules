@@ -1,0 +1,15 @@
+[submodule "visiona"]
+	path = visiona
+	url = git@github.com:mwerlen/visiona.git
+[submodule "libconfig"]
+	path = libconfig
+	url = https://github.com/hyperrealm/libconfig.git
+[submodule "eigen3"]
+	path = eigen3
+	url = https://github.com/eigenteam/eigen-git-mirror
+[submodule "opencv2"]
+	path = opencv2
+	url = https://github.com/opencv/opencv.git
+[submodule "opencv_contrib"]
+	path = opencv_contrib
+	url = https://github.com/opencv/opencv_contrib.git
