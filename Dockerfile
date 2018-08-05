@@ -1,4 +1,4 @@
-FROM debian:sid
+FROM debian:buster-slim
 
 MAINTAINER Maxime Werlen <maxime@werlen.fr>
 ENV DEBIAN_FRONTEND noninteractive
@@ -12,7 +12,7 @@ RUN apt-get update --fix-missing \
                 autoconf automake libtool flex bison  git libgtk2.0-dev pkg-config \
                 libavcodec-dev libavformat-dev libswscale-dev python-dev python-numpy \
                 libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libdc1394-22-dev \
-                texinfo locate\
+                texinfo locate gdb\
     && apt-get autoremove -y
 
 # Fixing timezone
@@ -31,7 +31,7 @@ RUN mkdir /usr/local/src/visiona
 COPY opencv2 /usr/local/src/opencv2
 RUN mkdir /usr/local/src/opencv2/build
 WORKDIR /usr/local/src/opencv2/build
-RUN cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr /usr/local/src/opencv2
+RUN cmake -DBUILD_SHARED_LIBS=OFF -D CMAKE_BUILD_TYPE=DEBUG -D CMAKE_INSTALL_PREFIX=/usr /usr/local/src/opencv2
 RUN make && make install
 
 # Installing libconfig
@@ -44,7 +44,7 @@ RUN make && make install
 COPY eigen3 /usr/local/src/eigen3
 RUN mkdir /usr/local/src/eigen3/build
 WORKDIR /usr/local/src/eigen3/build
-RUN cmake -DCMAKE_INSTALL_PREFIX=/usr /usr/local/src/eigen3 && make install
+RUN cmake -DCMAKE_INSTALL_PREFIX=/usr -D CMAKE_BUILD_TYPE=debug /usr/local/src/eigen3 && make install
 
 #Making eigen blas
 RUN make blas
