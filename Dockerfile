@@ -24,12 +24,13 @@ RUN echo "alias ll='ls -alh --color=auto'" >> /root/.bashrc
 RUN echo "alias rm='rm -i'" >> /root/.bashrc
 RUN echo "alias cp='cp -i'" >> /root/.bashrc
 RUN echo "add-auto-load-safe-path /usr/local/src/visiona/.gdbinit" >> /root/.gdbinit
+RUN echo "add-auto-load-safe-path /usr/local/src/markerDetector/.gdbinit" >> /root/.gdbinit
 
 # Installing openCV
 COPY opencv2 /usr/local/src/opencv2
 RUN mkdir /usr/local/src/opencv2/build
 WORKDIR /usr/local/src/opencv2/build
-RUN cmake -DBUILD_SHARED_LIBS=OFF -D CMAKE_BUILD_TYPE=DEBUG -D CMAKE_INSTALL_PREFIX=/usr /usr/local/src/opencv2
+RUN cmake -DBUILD_SHARED_LIBS=OFF -D CMAKE_BUILD_TYPE=DEBUG -D CMAKE_INSTALL_PREFIX=/usr -D WITH_JPEG=ON /usr/local/src/opencv2 
 RUN make && make install
 
 # Installing libconfig
