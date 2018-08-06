@@ -11,7 +11,7 @@ RUN apt-get update --fix-missing \
     && apt-get install -y build-essential gcc cmake make vim less locales autopkgtest \
                 autoconf automake libtool flex bison  git libgtk2.0-dev pkg-config \
                 libavcodec-dev libavformat-dev libswscale-dev python-dev python-numpy \
-                libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libdc1394-22-dev \
+                libtbb2 libtbb-dev libjpeg-dev libjpeg libpng-dev libpng libtiff-dev libdc1394-22-dev \
                 texinfo locate gdb\
     && apt-get autoremove -y
 
@@ -31,7 +31,7 @@ RUN mkdir /usr/local/src/visiona
 COPY opencv2 /usr/local/src/opencv2
 RUN mkdir /usr/local/src/opencv2/build
 WORKDIR /usr/local/src/opencv2/build
-RUN cmake -DBUILD_SHARED_LIBS=OFF -D CMAKE_BUILD_TYPE=DEBUG -D CMAKE_INSTALL_PREFIX=/usr /usr/local/src/opencv2
+RUN cmake -DBUILD_SHARED_LIBS=OFF -D CMAKE_BUILD_TYPE=DEBUG -D CMAKE_INSTALL_PREFIX=/usr -D WITH_JPEG=ON /usr/local/src/opencv2 
 RUN make && make install
 
 # Installing libconfig
