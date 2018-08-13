@@ -10,6 +10,3 @@
 [submodule "opencv2"]
 	path = opencv2
 	url = https://github.com/opencv/opencv.git
-[submodule "opencv_contrib"]
-	path = opencv_contrib
-	url = https://github.com/opencv/opencv_contrib.git
