@@ -23,6 +23,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN echo "alias ll='ls -alh --color=auto'" >> /root/.bashrc
 RUN echo "alias rm='rm -i'" >> /root/.bashrc
 RUN echo "alias cp='cp -i'" >> /root/.bashrc
+RUN echo "add-auto-load-safe-path /usr/local/src/visiona/.gdbinit" >> /root/.gdbinit
 
 # Preparing mount point
 RUN mkdir /usr/local/src/visiona
@@ -54,7 +55,7 @@ RUN updatedb
 
 # Prepare to work
 WORKDIR /usr/local/src/visiona/build
-# Todo manually (folder vision not copied)
+# Todo manually (folder visiona not copied but need to be mounted)
 #RUN cmake /usr/local/src/visiona
 #RUN make
 
