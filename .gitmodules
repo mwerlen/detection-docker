@@ -10,3 +10,6 @@
 [submodule "opencv2"]
 	path = opencv2
 	url = https://github.com/opencv/opencv.git
+[submodule "markerDetector"]
+	path = markerDetector
+	url = git@github.com:mwerlen/markerDetector.git

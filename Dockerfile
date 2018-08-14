@@ -25,9 +25,6 @@ RUN echo "alias rm='rm -i'" >> /root/.bashrc
 RUN echo "alias cp='cp -i'" >> /root/.bashrc
 RUN echo "add-auto-load-safe-path /usr/local/src/visiona/.gdbinit" >> /root/.gdbinit
 
-# Preparing mount point
-RUN mkdir /usr/local/src/visiona
-
 # Installing openCV
 COPY opencv2 /usr/local/src/opencv2
 RUN mkdir /usr/local/src/opencv2/build
@@ -53,8 +50,12 @@ RUN make blas
 # Ca sert !
 RUN updatedb
 
+# Preparing mount point
+RUN mkdir /usr/local/src/markerDetector
+RUN mkdir /usr/local/src/visiona
+
 # Prepare to work
-WORKDIR /usr/local/src/visiona/build
+WORKDIR /usr/local/src/markerDetector/build
 # Todo manually (folder visiona not copied but need to be mounted)
 #RUN cmake /usr/local/src/visiona
 #RUN make
