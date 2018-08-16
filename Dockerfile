@@ -19,13 +19,6 @@ RUN apt-get update --fix-missing \
 ENV TZ=Europe/Paris
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-#Some alias
-RUN echo "alias ll='ls -alh --color=auto'" >> /root/.bashrc
-RUN echo "alias rm='rm -i'" >> /root/.bashrc
-RUN echo "alias cp='cp -i'" >> /root/.bashrc
-RUN echo "add-auto-load-safe-path /usr/local/src/visiona/.gdbinit" >> /root/.gdbinit
-RUN echo "add-auto-load-safe-path /usr/local/src/markerDetector/.gdbinit" >> /root/.gdbinit
-
 # Installing openCV
 COPY opencv2 /usr/local/src/opencv2
 RUN mkdir /usr/local/src/opencv2/build
@@ -44,9 +37,15 @@ COPY eigen3 /usr/local/src/eigen3
 RUN mkdir /usr/local/src/eigen3/build
 WORKDIR /usr/local/src/eigen3/build
 RUN cmake -DCMAKE_INSTALL_PREFIX=/usr -D CMAKE_BUILD_TYPE=debug /usr/local/src/eigen3 && make install
-
 #Making eigen blas
 RUN make blas
+
+#Some alias
+RUN echo "alias ll='ls -alh --color=auto'" >> /root/.bashrc
+RUN echo "alias rm='rm -i'" >> /root/.bashrc
+RUN echo "alias cp='cp -i'" >> /root/.bashrc
+RUN echo "add-auto-load-safe-path /usr/local/src/visiona/.gdbinit" >> /root/.gdbinit
+RUN echo "add-auto-load-safe-path /usr/local/src/markerDetector/.gdbinit" >> /root/.gdbinit
 
 # Ca sert !
 RUN updatedb
