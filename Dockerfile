@@ -33,12 +33,12 @@ RUN autoreconf && /usr/local/src/libconfig/configure --prefix=/usr
 RUN make && make install
 
 # Installing eigen3
-COPY eigen3 /usr/local/src/eigen3
-RUN mkdir /usr/local/src/eigen3/build
-WORKDIR /usr/local/src/eigen3/build
-RUN cmake -DCMAKE_INSTALL_PREFIX=/usr -D CMAKE_BUILD_TYPE=debug /usr/local/src/eigen3 && make install
+#COPY eigen3 /usr/local/src/eigen3
+#RUN mkdir /usr/local/src/eigen3/build
+#WORKDIR /usr/local/src/eigen3/build
+#RUN cmake -DCMAKE_INSTALL_PREFIX=/usr -D CMAKE_BUILD_TYPE=debug /usr/local/src/eigen3 && make install
 #Making eigen blas
-RUN make blas
+#RUN make blas
 
 #Some alias
 RUN echo "alias ll='ls -alh --color=auto'" >> /root/.bashrc
@@ -52,7 +52,7 @@ RUN updatedb
 
 # Preparing mount point
 RUN mkdir /usr/local/src/markerDetector
-RUN mkdir /usr/local/src/visiona
+#RUN mkdir /usr/local/src/visiona
 
 # Prepare to work
 WORKDIR /usr/local/src/markerDetector/build
